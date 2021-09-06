@@ -15,8 +15,8 @@ standard_types_inject() ->
     Int = {scalar, #{
     	id => 'Int',
     	description => <<"Integers in the range ±2^53. The GraphQL standard only allows for 32-bit signed integers, but we can support up to the larger range."/utf8>> }},
-    Bool = {scalar, #{
-    	id => 'Bool',
+    Boolean = {scalar, #{
+    	id => 'Boolean',
     	description => <<"Boolean values, either given as the *true* and *false* values of JSON, or as the strings \"true\" and \"false\"."/utf8>> }},
     ID = {scalar, #{
     	id => 'ID',
@@ -24,7 +24,7 @@ standard_types_inject() ->
     ok = graphql:insert_schema_definition(String),
     ok = graphql:insert_schema_definition(Float),
     ok = graphql:insert_schema_definition(Int),
-    ok = graphql:insert_schema_definition(Bool),
+    ok = graphql:insert_schema_definition(Boolean),
     ok = graphql:insert_schema_definition(ID),
     ok.
 
@@ -36,7 +36,7 @@ standard_directives_inject() ->
         locations => ['FIELD', 'FRAGMENT_SPREAD', 'INLINE_FRAGMENT'],
         resolve_module => graphql_directives,
         args => #{ <<"if">> => #{
-            type => 'Bool',
+            type => 'Boolean',
             default => false,
             description => <<"Wether or not the item should be skipped">> }}
         }},
@@ -46,7 +46,7 @@ standard_directives_inject() ->
         locations => ['FIELD', 'FRAGMENT_SPREAD', 'INLINE_FRAGMENT'],
         resolve_module => graphql_directives,
         args => #{ <<"if">> => #{
-            type => 'Bool',
+            type => 'Boolean',
             default => false,
             description => <<"Wether or not the item should be included">> }}
         }},
